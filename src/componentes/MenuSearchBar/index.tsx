@@ -10,9 +10,6 @@ const MenuSearchBar = () => {
                 type='search'
                 placeholder='Pesquise aqui...'
             />
-            <button onClick={async ()=>{
-                console.log(await Get('https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?'));
-            }}></button>
         </div>
     )
 }

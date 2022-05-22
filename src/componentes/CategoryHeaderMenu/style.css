@@ -1,0 +1,28 @@
+body{
+    overflow: hidden;
+}
+
+.app_categoryheadermenu_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    width: 100%;
+    max-height: 4vh;
+    background: var(--secondary-gray);
+    padding: 0 0px;
+    margin: 0;
+}
+
+.app_categoryheadermenu_container h2, span{
+    margin: 4px 0 4px 32px;
+    font-family: Roboto, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.app_categoryheadermenu_controllers{
+    margin-right: 32px;
+}

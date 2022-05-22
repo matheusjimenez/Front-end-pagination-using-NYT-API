@@ -9,20 +9,21 @@ import Button from '@mui/material/Button';
 import StarIcon from '@mui/icons-material/Star';
 import { MenuSearchBar } from '../MenuSearchBar';
 
+import './style.css';
 
 const NavBar = () => {
     
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar style={{ background: 'var(--blue)' }} position="static">
-                    <Toolbar>
+                <AppBar className='app_navbar_appbar' position="static">
+                    <Toolbar className='app_navbar_toolbar'>
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                             Bloom Books
                         </Typography>
+                        <MenuSearchBar/>
                         <Button color="inherit"><StarIcon/></Button>
                     </Toolbar>
-                    <MenuSearchBar/>
                 </AppBar>
             </Box>
         </>
