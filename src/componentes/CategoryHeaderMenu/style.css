@@ -1,5 +1,5 @@
 body{
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .app_categoryheadermenu_container{
@@ -10,13 +10,13 @@ body{
     justify-items: center;
     text-align: center;
     width: 100%;
-    max-height: 4vh;
+    max-height: 48px;
     background: var(--secondary-gray);
     padding: 0 0px;
     margin: 0;
 }
 
-.app_categoryheadermenu_container h2, span{
+.app_categoryheadermenu_container h2, .app_categoryheadermenu_container span{
     margin: 4px 0 4px 32px;
     font-family: Roboto, sans-serif;
     font-size: 24px;

@@ -1,12 +1,7 @@
 import axios from "axios";
 
-async function Get(url: string){
-    let data;
-    await axios.get(url+`api-key=${import.meta.env.VITE_NYT_KEY}`).then(response =>{
-        data = response;
-    });
-
-    return data;
+function Get<T>(url: string){
+    return axios.get<T>(url+`api-key=${import.meta.env.VITE_NYT_KEY}`);
 }
 
 export { Get };
