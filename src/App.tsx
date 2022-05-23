@@ -23,6 +23,7 @@ function App() {
   const [amountDataToDisplay, setAmountDataToDisplay] = useState<number>(5);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pagesIndex, setPagesIndex] = useState([]);
+  const [categoryPaginated, setCategoryPaginated] = useState([]);
 
 
   const handleSelectChange = (value) => {
@@ -40,7 +41,7 @@ function App() {
     }
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     let responseLength = categoryListNames.length;
     if (responseLength) {
       let referenceArray = []
@@ -48,8 +49,13 @@ function App() {
         referenceArray.push(index)
       }
       setPagesIndex(referenceArray);
+      setCategoryPaginated(categoryListNames.slice(0, amountDataToDisplay));
     }
-  }, [amountDataToDisplay])
+  }, [amountDataToDisplay]);
+
+  useEffect(() => {
+    setCategoryPaginated(categoryListNames.slice(currentPage * amountDataToDisplay - 1, currentPage * amountDataToDisplay + amountDataToDisplay))
+  }, [currentPage])
 
   return (
     <>
@@ -61,7 +67,7 @@ function App() {
       <table>
         <tbody>
           {
-            categoryListNames.slice(0, amountDataToDisplay).map((item, index) => {
+            categoryPaginated.map((item, index) => {
               return <ListItem
                 categoryCreatedOn={item.oldest_published_date}
                 categoryLastPosting={item.newest_published_date}
@@ -78,11 +84,13 @@ function App() {
       <div className='app_main_paginationBody'>
         {pagesIndex.map((element, index) => {
           return (
-            <PaginationIndex
+            <div
               key={`paginationIndexKey${index}`}
-              displayedNumber={element}
-              selected={false}
-            />
+              onClick={() => { setCurrentPage(element) }}>
+              <PaginationIndex
+                displayedNumber={element}
+              />
+            </div>
           )
         })}
       </div>
