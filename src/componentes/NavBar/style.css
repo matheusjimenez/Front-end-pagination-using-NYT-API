@@ -1,7 +1,4 @@
-.app_navbar_appbar{
-    background: 'var(--blue)';   
-}
-
 .app_navbar_toolbar{
     display: flex;
+    background-color: var(--blue);   
 }

@@ -1,0 +1,21 @@
+.app_paginationindex_container{
+    height: 32px;
+    width: 32px;
+    border: solid 3px #1F2445;
+    border-radius: 12px;
+    border-color: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.app_paginationindex_container:active{
+    background-color: #1F2445;
+    opacity: 0.7;
+    transition: 0.1s ease;
+}
+
+.app_paginationindex_selectedIndex{
+    background-color: #1F2445;
+}
