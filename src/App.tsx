@@ -54,7 +54,9 @@ function App() {
   }, [amountDataToDisplay]);
 
   useEffect(() => {
-    setCategoryPaginated(categoryListNames.slice(currentPage * amountDataToDisplay - 1, currentPage * amountDataToDisplay + amountDataToDisplay))
+    let indexOfLastPage = currentPage * amountDataToDisplay;
+    let indexOfFirstPage = indexOfLastPage - amountDataToDisplay;
+    setCategoryPaginated(categoryListNames.slice(indexOfFirstPage, indexOfLastPage))
   }, [currentPage])
 
   return (
