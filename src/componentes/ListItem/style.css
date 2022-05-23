@@ -1,11 +1,22 @@
 .app_listitem_container{
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     text-align: center;
     align-items: center;
     text-align: center;
     margin: 0;
     padding: 0;
+}
+
+.app_listitem_container td:first-child{
+    text-align: start;
+}
+
+.app_listitem_container a{
+    color: var(--link-color);
+}
+
+.app_listitem_container span{
+    font-style: italic;
+    font-family: Roboto, sans-serif;
+    font-size: 10px;
 }

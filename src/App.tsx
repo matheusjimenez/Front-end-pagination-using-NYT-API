@@ -5,13 +5,13 @@ import { ListItem } from './componentes/ListItem';
 import { NavBar } from './componentes/NavBar'
 import { Get } from './infra/axios';
 
-interface CategoryProps{
+interface CategoryProps {
   display_name: string;
   list_name: string;
   newest_published_date: string;
   oldest_published_date: string;
 }
-interface ResponseData{
+interface ResponseData {
   results: CategoryProps[]
 }
 
@@ -19,6 +19,11 @@ function App() {
   const listNameEndpoint = 'https://api.nytimes.com/svc/books/v3/lists/names.json?'
   const [category, setCategory] = useState('Gêneros');
   const [categoryListNames, setCategoryListNames] = useState<CategoryProps[]>([]);
+  const [amountDataToDisplay, setAmountDataToDisplay] = useState<number>(5);
+
+  const handleSelectChange = (value) =>{
+    setAmountDataToDisplay(value);
+  }
 
   useEffect(() => {
     try {
@@ -35,11 +40,14 @@ function App() {
   return (
     <>
       <NavBar />
-      <CategoryHeaderMenu mainText={category} />
+      <CategoryHeaderMenu 
+        mainText={category}
+        onSelectChange={handleSelectChange}
+      />
       <table>
         <tbody>
           {
-            categoryListNames.map((item, index) => {
+            categoryListNames.slice(0,amountDataToDisplay).map((item, index) => {
               return <ListItem
                 categoryCreatedOn={item.oldest_published_date}
                 categoryLastPosting={item.newest_published_date}

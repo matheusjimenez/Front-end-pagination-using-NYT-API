@@ -4,18 +4,23 @@ import TableRowsIcon from '@mui/icons-material/TableRows';
 
 
 import './style.css';
-import { InputLabel, MenuItem, Select } from "@mui/material";
+import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 
 interface CategoryHeaderMenuProps {
     mainText: string;
+    onSelectChange(value): void;
 }
 
-const CategoryHeaderMenu = ({ mainText = 'Gênero' }: CategoryHeaderMenuProps) => {
-    const [quantity, setQuantity] = useState([1,2,3,4,5,6,7]);
-    const [currentQuantityValue, setCurrentQuantityValue] = useState(1);
+const CategoryHeaderMenu = ({ mainText = 'Gênero', onSelectChange }: CategoryHeaderMenuProps) => {
+    const quantity = [5, 10, 25, 50];
+    const [currentQuantityValue, setCurrentQuantityValue] = useState('');
+    const [age, setAge] = React.useState('');
 
-    const handleChange = () =>{
-    }
+    const handleChange = (event: SelectChangeEvent) => {
+        setCurrentQuantityValue(event.target.value as string);
+        return event.target.value;
+    };
+
 
     return (
         <div className='app_categoryheadermenu_container'>
@@ -24,16 +29,16 @@ const CategoryHeaderMenu = ({ mainText = 'Gênero' }: CategoryHeaderMenuProps) =
                 <span>Exibir
                     <Select
                         value={currentQuantityValue}
-                        label="Age"
-                        onChange={handleChange}
+                        label=''
+                        onChange={(event) => { onSelectChange(handleChange(event)) }}
                     >
-                        { quantity.map((elements, index) =>{
+                        {quantity.map((elements, index) => {
                             return <MenuItem key={`menuItemKey${index}`} value={elements}>{elements}</MenuItem>
                         })}
                     </Select>
                     por vez</span>
-                <GridViewIcon />
-                <TableRowsIcon />
+                <button><GridViewIcon /></button>
+                <button><TableRowsIcon /></button>
             </div>
         </div>
     );

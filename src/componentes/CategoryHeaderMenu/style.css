@@ -16,13 +16,42 @@ body{
     margin: 0;
 }
 
-.app_categoryheadermenu_container h2, .app_categoryheadermenu_container span{
+.app_categoryheadermenu_container h2{
     margin: 4px 0 4px 32px;
     font-family: Roboto, sans-serif;
     font-size: 24px;
     font-weight: 700;
 }
 
+.app_categoryheadermenu_container span{
+    margin-right: 15px;
+    font-family: Roboto, sans-serif;
+    font-size: 12px;
+}
+
+.app_categoryheadermenu_container button{
+    cursor: pointer;
+    border: none;
+    margin: 0 3px;
+    background-color: transparent;
+}
+
+.app_categoryheadermenu_container button:hover{
+    opacity: 0.7;
+}
+.app_categoryheadermenu_container button:active{
+    opacity: 0.5;
+}
+
+.app_categoryheadermenu_container button{
+    cursor: pointer;
+    border: none;
+    margin: 0 3px
+}
+
 .app_categoryheadermenu_controllers{
     margin-right: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

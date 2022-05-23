@@ -17,12 +17,11 @@ const ListItem = ({
     redirectLink = 'google.com'
 } : ListItemProps) =>{
     return(
-        <div className='app_listitem_container'>
-            <a href={redirectLink}>{categoryText}</a>
-            <span>Atualizado em {categoryLastUpdate}</span>
-            <p>Última publicação: {categoryLastPosting}</p>
-            <p>Publicação mais antiga: {categoryCreatedOn}</p>
-        </div>
+        <tr className='app_listitem_container'>
+            <td><a href={redirectLink}>{categoryText}</a><span> Atualizado em {categoryLastUpdate}</span></td>
+            <td><p>Última publicação: {categoryLastPosting}</p></td>
+            <td><p>Publicação mais antiga: {categoryCreatedOn}</p></td>
+        </tr>
     );
 }
 
