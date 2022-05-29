@@ -13,7 +13,7 @@ interface CategoryHeaderMenuProps {
 
 const CategoryHeaderMenu = ({ mainText = 'Gênero', onSelectChange }: CategoryHeaderMenuProps) => {
     const quantity = [5, 10, 25, 50];
-    const [currentQuantityValue, setCurrentQuantityValue] = useState('');
+    const [currentQuantityValue, setCurrentQuantityValue] = useState('5');
     const [age, setAge] = React.useState('');
 
     const handleChange = (event: SelectChangeEvent) => {

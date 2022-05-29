@@ -37,7 +37,6 @@ function App() {
       })
     } catch (err) {
       alert(err);
-    } finally {
     }
   }, []);
 
@@ -51,7 +50,7 @@ function App() {
       setPagesIndex(referenceArray);
       setCategoryPaginated(categoryListNames.slice(0, amountDataToDisplay));
     }
-  }, [amountDataToDisplay]);
+  }, [amountDataToDisplay, categoryListNames]);
 
   useEffect(() => {
     let indexOfLastPage = currentPage * amountDataToDisplay;
