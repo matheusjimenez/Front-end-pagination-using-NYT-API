@@ -13,6 +13,7 @@
 
 .app_listitem_container a{
     color: var(--link-color);
+    cursor: pointer;
 }
 
 .app_listitem_container span{

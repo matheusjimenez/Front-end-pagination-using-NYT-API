@@ -1,0 +1,15 @@
+.app_booklist_container a{
+    background-color: var(--link-color);
+    border-radius: 24px;
+    width: 136px;
+    height: 32px;
+    padding: 4px 12px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.app_booklist_container{
+    margin: 20px 0;
+}

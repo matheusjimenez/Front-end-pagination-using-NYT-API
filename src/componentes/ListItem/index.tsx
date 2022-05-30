@@ -7,6 +7,7 @@ interface ListItemProps{
     categoryLastPosting: string;
     categoryCreatedOn: string;
     redirectLink:string;
+    handleClick: ()=> void;
 }
 
 const ListItem = ({
@@ -14,11 +15,12 @@ const ListItem = ({
     categoryLastUpdate = '2000-00-00', 
     categoryLastPosting = '2000-00-00', 
     categoryCreatedOn= '2000-00-00',
-    redirectLink = 'google.com'
+    redirectLink = 'google.com',
+    handleClick
 } : ListItemProps) =>{
     return(
         <tr className='app_listitem_container'>
-            <td><a href={redirectLink}>{categoryText}</a><span> Atualizado em {categoryLastUpdate}</span></td>
+            <td><a onClick={handleClick}>{categoryText}</a><span> Atualizado em {categoryLastUpdate}</span></td>
             <td><p>Última publicação: {categoryLastPosting}</p></td>
             <td><p>Publicação mais antiga: {categoryCreatedOn}</p></td>
         </tr>
