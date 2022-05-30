@@ -12,4 +12,10 @@
 
 .app_booklist_container{
     margin: 20px 0;
+    justify-self: center;
+    align-self: center;
+}
+
+.app_booklist_container{
+    width: 100%;
 }

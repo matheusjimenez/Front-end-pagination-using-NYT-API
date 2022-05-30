@@ -34,9 +34,14 @@ interface BookList {
   title: string;
 }
 
+enum displayModeEnum{
+  displayBlocks= 'displayBlocks',
+  displayList= 'displayList'
+}
+
 function App() {
   const listNameEndpoint = 'https://api.nytimes.com/svc/books/v3/lists/names.json?'
-  const listBooks = `https://api.nytimes.com/svc/books/v3/lists/${new Date().toISOString().slice(0,10)}/`
+  const listBooks = `https://api.nytimes.com/svc/books/v3/lists/${new Date().toISOString().slice(0, 10)}/`
   const [category, setCategory] = useState('Gêneros');
   const [categoryListNames, setCategoryListNames] = useState<Category[]>([]);
   const [bookList, setBookList] = useState<BookList[]>([]);
@@ -44,7 +49,9 @@ function App() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pagesIndex, setPagesIndex] = useState([]);
   const [categoryPaginated, setCategoryPaginated] = useState([]);
+  const [booksPaginated, setBooksPaginated] = useState([]);
   const [loading, setLoader] = useState(true);
+  const [diplayMode, setDisplayMode] = useState('displayList');
 
   const handlePageReset = () => {
     setAmountDataToDisplay(5);
@@ -86,6 +93,18 @@ function App() {
   }, []);
 
   useEffect(() => {
+    let responseLength = bookList.length;
+    if (responseLength) {
+      let referenceArray = []
+      for (let index = 1; index <= Math.ceil(responseLength / amountDataToDisplay); index++) {
+        referenceArray.push(index)
+      }
+      setPagesIndex(referenceArray);
+      setBooksPaginated(bookList.slice(0, amountDataToDisplay));
+    }
+  }, [amountDataToDisplay, bookList]);
+
+  useEffect(() => {
     let responseLength = categoryListNames.length;
     if (responseLength) {
       let referenceArray = []
@@ -101,6 +120,7 @@ function App() {
     let indexOfLastPage = currentPage * amountDataToDisplay;
     let indexOfFirstPage = indexOfLastPage - amountDataToDisplay;
     setCategoryPaginated(categoryListNames.slice(indexOfFirstPage, indexOfLastPage))
+    setBooksPaginated(bookList.slice(indexOfFirstPage, indexOfLastPage));
   }, [currentPage])
 
   return (
@@ -109,26 +129,33 @@ function App() {
       <CategoryHeaderMenu
         mainText={category}
         onSelectChange={handleSelectChange}
+        handleGridModeClick={()=>{setDisplayMode(displayModeEnum.displayBlocks.toString())}}
+        handleRowModeClick={()=>{setDisplayMode(displayModeEnum.displayList.toString())}}
       />
       {loading && <LinearProgress />}
-      <table>
-        <tbody>
-        {bookList.length > 0 &&
-          bookList.map((item, index)=>{
+      <div className={`${diplayMode}`}>
+        {
+          bookList.length > 0 &&
+          booksPaginated.map((item, index) => {
             return <BookListItem 
-            amazonLink={item.amazon_product_url}
-            author={item.author}
-            decription ={item.description}
-            frontCover={item.book_image}
-            price={item.price}
-            publisher={item.publisher}
-            rank={item.rank}
-            title={item.title}
-            key={'bookId'+index}
+              customStyle={diplayMode}
+              amazonLink={item.amazon_product_url}
+              author={item.author}
+              decription={item.description}
+              frontCover={item.book_image}
+              price={item.price}
+              publisher={item.publisher}
+              rank={item.rank}
+              title={item.title}
+              key={'bookId' + index}
             />
           })
         }
-          {
+      </div>
+      <table>
+        <tbody>
+
+          {bookList.length === 0 &&
             categoryPaginated.map((item, index) => {
               return <ListItem
                 categoryCreatedOn={item.oldest_published_date}

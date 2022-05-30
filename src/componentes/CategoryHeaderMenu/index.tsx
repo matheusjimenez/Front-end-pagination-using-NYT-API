@@ -9,9 +9,11 @@ import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 interface CategoryHeaderMenuProps {
     mainText: string;
     onSelectChange(value): void;
+    handleGridModeClick(): void;
+    handleRowModeClick(): void;
 }
 
-const CategoryHeaderMenu = ({ mainText = 'Gênero', onSelectChange }: CategoryHeaderMenuProps) => {
+const CategoryHeaderMenu = ({ mainText = 'Gênero', onSelectChange, handleGridModeClick, handleRowModeClick  }: CategoryHeaderMenuProps) => {
     const quantity = [5, 10, 25, 50];
     const [currentQuantityValue, setCurrentQuantityValue] = useState('5');
     const [age, setAge] = React.useState('');
@@ -37,8 +39,8 @@ const CategoryHeaderMenu = ({ mainText = 'Gênero', onSelectChange }: CategoryHe
                         })}
                     </Select>
                     por vez</span>
-                <button><GridViewIcon /></button>
-                <button><TableRowsIcon /></button>
+                <button onClick={handleGridModeClick}><GridViewIcon /></button>
+                <button onClick={handleRowModeClick}><TableRowsIcon /></button>
             </div>
         </div>
     );

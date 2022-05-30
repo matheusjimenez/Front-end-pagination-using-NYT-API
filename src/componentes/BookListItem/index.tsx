@@ -9,7 +9,8 @@ interface BookListProps {
     rank: string,
     price: string,
     amazonLink: string,
-    frontCover: string
+    frontCover: string,
+    customStyle: string
 }
 
 const BookListItem = ({
@@ -20,32 +21,12 @@ const BookListItem = ({
     rank,
     price,
     amazonLink,
-    frontCover
+    frontCover,
+    customStyle
 }: BookListProps) => {
     return (
         <>
-            {/* <Card className='app_booklist_container' sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        height="140"
-        image="https://http2.mlstatic.com/D_NQ_NP_617917-MLB32140972589_092019-O.jpg"
-        alt="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-            {decription}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <td><a href={amazonLink} target='_blank'>Comprar por {price}</a></td>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card> */}
-
-            <Card className='app_booklist_container' sx={{ maxWidth: 1040, display: 'flex' }}>
+            <Card className={`app_booklist_container ${customStyle}`} sx={{ maxWidth: '90%', display: 'flex', alignItems: 'center' }}>
                 <CardMedia
                     component="img"
                     sx={{ width: 151 }}
@@ -72,14 +53,6 @@ const BookListItem = ({
                     </Box>
                 </Box>
             </Card>
-            {/* <tr className='app_booklist_container'>
-                <td><img src={frontCover} /></td>
-                <td><h2>{title}</h2></td>
-                <td><span>by {author}</span></td>
-                <td><span>{decription}</span></td>
-                <td><span>Rank{rank}</span></td>
-                <td><a href={amazonLink} target='_blank'>Comprar por {price}</a></td>
-            </tr> */}
         </>
     )
 }
